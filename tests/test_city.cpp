@@ -3,6 +3,8 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
+using ::testing::_;
+
 class MockxmlVisitor : public xmlVisitor
 {
 public:
