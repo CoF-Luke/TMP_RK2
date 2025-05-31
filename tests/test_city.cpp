@@ -11,7 +11,7 @@ public:
     MOCK_METHOD(void, cityVisitor, (City* city), (override));
 };
 
-TEST(City, Accept)
+TEST(CityTest, Accept)
 {
     MockxmlVisitor visitor;
     City c1("tehran", 1, 2, 100);
