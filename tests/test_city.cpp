@@ -1,11 +1,11 @@
-include <xmlvisitor.h>
-include <gmock/gmock.h>
-include <gtest/gtest.h>
+#include <xmlvisitor.h>
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
 
 class MockxmlVisitor : public xmlVisitor
 {
     MOCK_METHOD(void, cityVisitor, (City*), (override));
-}
+};
 
 TEST(City, Accept)
 {
