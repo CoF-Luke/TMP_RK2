@@ -1,3 +1,4 @@
-include <city.h>
-include <gmock/gmock.h>
-include <gtest/gtest.h>
+#include <city.h>
+#include <xmlvisitor.h>
+#include <gmock/gmock.h>
+#include <gtest/gtest.h>
