@@ -9,7 +9,7 @@ public:
     xmlVisitor();
     void cityVisitor(City* city);
     void houseVisitor(House *house);
-    virtual void industryVisitor(Industry *industry);
+    void industryVisitor(Industry *industry);
 };
 
 #endif // XMLVISITOR_H

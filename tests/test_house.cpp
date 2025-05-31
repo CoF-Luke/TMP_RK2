@@ -1,4 +1,4 @@
-/* #include <house.h>
+#include <house.h>
 #include <xmlvisitor.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -8,14 +8,13 @@ using ::testing::_;
 class MockxmlVisitor : public xmlVisitor
 {
 public:
-    MOCK_METHOD(void, industryVisitor, (Industry* industry), (override));
+    MOCK_METHOD(void, houseVisitor, (House* house), (override));
 };
 
-TEST(IndustryTests, Accept)
+TEST(HouseTest, Accept)
 {
     MockxmlVisitor visitor;
-    Industry i1("cast", 100, 1, 3);
-    EXPECT_CALL(visitor, industryVisitor(_)).Times(1);
-    i1.accept(&visitor);
+    House h1(3, 2, 3);
+    EXPECT_CALL(visitor, houseVisitor(_)).Times(1);
+    h1.accept(&visitor);
 }
- */
