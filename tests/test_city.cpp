@@ -13,6 +13,6 @@ TEST(City, Accept)
 {
     MockxmlVisitor visitor;
     City c1("tehran", 1, 2, 100);
-    EXPECT_CALL(visitor, cityVisitor()).Times(1);
+    EXPECT_CALL(visitor, cityVisitor(_)).Times(1);
     c1.accept(&visitor);
 }
