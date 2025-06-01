@@ -1,0 +1,84 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build_deb_package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake
+
+      - name: Configure Visitor
+        run: cmake -S. -B build -DCMAKE_BUILD_TYPE=Release
+        shell: bash
+
+      - name: Build Visitor
+        run: cmake --build build --config Release
+        shell: bash
+
+      - name: Create DEB package
+        run: |
+          cd build
+          cpack -G DEB -C Release
+        shell: bash
+
+      - name: Create source archive
+        run: tar -czvf source.tar.gz . --exclude=build
+        shell: bash
+
+      - name: Upload DEB artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-packages
+          path: build/*.deb
+
+      - name: Upload Source Code
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-code
+          path: source.tar.gz
+
+  release:
+    needs: [build_deb_package]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check tag existence
+        run: |
+          if [ -z "${GITHUB_REF_NAME}" ]; then
+            echo "No tag found. Skipping release."
+            exit 0
+          fi
+        shell: bash
+
+      - name: Download DEB artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: deb-packages
+          path: deb-packages
+
+      - name: Download Source Code
+        uses: actions/download-artifact@v4
+        with:
+          name: source-code
+          path: source-code
+
+      - name: Upload GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          files: |
+            deb-packages/*.deb=my-app_${{ github.ref_name }}_amd64.deb
+            source-code/source.tar.gz=my-app-${{ github.ref_name }}-source.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
