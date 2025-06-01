@@ -37,11 +37,15 @@ jobs:
 
       - name: Create source archive
         run: |
-          echo "./build" >> exclude.txt
-          echo "./third-party" >> exclude.txt
-          echo "./tests" >> exclude.txt
-          tar -czvf source.tar.gz . --exclude-from=exclude.txt
-          rm exclude.txt
+          git ls-tree -r HEAD --name-only > filelist.txt
+
+          grep -v '^build/' filelist.txt > filelist_filtered.txt
+          grep -v '^third-party/' filelist_filtered.txt > filelist_final.txt
+          grep -v '^tests/' filelist_final.txt > filelist_include.txt
+
+          tar -czvf source.tar.gz -T filelist_include.txt
+
+          rm filelist.txt filelist_filtered.txt filelist_final.txt filelist_include.txt
         shell: bash
 
       - name: Upload DEB artifacts
