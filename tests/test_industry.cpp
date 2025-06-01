@@ -38,7 +38,7 @@ TEST(HouseTest, Accept)
     h1.accept(&visitor);
 }
 
-TEST(HouseTest, Accept)
+TEST(HouseTest, GetStairs)
 {
     House h1(3, 2, 3);
     EXPECT_EQ(h1.getStairs(), 3);
