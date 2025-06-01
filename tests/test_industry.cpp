@@ -18,7 +18,7 @@ public:
 class MockHouse : public House
 {
 public:
-    MOCK_METHOD(int, getStairs, (), (override));
+    MOCK_METHOD(int, getStairs, (), ());
 };
 
 TEST(CityTest, Accept)
