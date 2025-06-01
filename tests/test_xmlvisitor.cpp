@@ -33,5 +33,5 @@ TEST(MainTest, OutputToConsole) {
     std::string output = capture.str();
     EXPECT_EQ(output.find("Hello, world!"), "3");
 
-    cout << "Expected: 3 \nOutput: " << output << endl; 
+    std::cout << "Expected: 3 \nOutput: " << output << std::endl; 
 }
