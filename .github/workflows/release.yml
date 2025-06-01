@@ -87,6 +87,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           draft: false
+          generate_release_notes: false
           files: |
             deb-packages/*.deb
             source-code/source.tar.gz
