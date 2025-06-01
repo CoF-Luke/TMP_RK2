@@ -36,7 +36,12 @@ jobs:
         shell: bash
 
       - name: Create source archive
-        run: tar -czvf source.tar.gz . --exclude='./build' --exclude='./third-party' 
+        run: |
+          echo "./build" >> exclude.txt
+          echo "./third-party" >> exclude.txt
+          echo "./tests" >> exclude.txt
+          tar -czvf source.tar.gz . --exclude-from=exclude.txt
+          rm exclude.txt
         shell: bash
 
       - name: Upload DEB artifacts
