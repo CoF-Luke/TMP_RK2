@@ -31,7 +31,7 @@ TEST(MainTest, OutputToConsole) {
     std::cout.rdbuf(oldCout);
 
     std::string output = capture.str();
-    EXPECT_TRUE(output.find("3"));
+    EXPECT_TRUE(output.find(3));
 
     std::cout << "Expected: 3 \nOutput: " << output << std::endl; 
 }
