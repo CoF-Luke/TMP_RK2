@@ -88,7 +88,7 @@ jobs:
           tag_name: ${{ github.ref_name }}
           draft: false
           files: |
-            deb-packages/*.deb=tmp_rk2-${{ github.ref_name }}-Linux.deb
-            source-code/source.tar.gz=tmp_rk2-${{ github.ref_name }}-source.tar.gz
+            deb-packages/*.deb
+            source-code/source.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
