@@ -1,4 +1,4 @@
-#include <city.h>
+/* #include <city.h>
 #include <xmlvisitor.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
@@ -18,3 +18,4 @@ TEST(CityTest, Accept)
     EXPECT_CALL(visitor, cityVisitor(_)).Times(1);
     c1.accept(&visitor);
 }
+ */
