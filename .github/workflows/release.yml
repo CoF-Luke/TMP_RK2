@@ -52,14 +52,6 @@ jobs:
     needs: [build_deb_package]
     runs-on: ubuntu-latest
     steps:
-      - name: Check tag existence
-        run: |
-          if [ -z "${GITHUB_REF_NAME}" ]; then
-            echo "No tag found. Skipping release."
-            exit 0
-          fi
-        shell: bash
-
       - name: Download DEB artifacts
         uses: actions/download-artifact@v4
         with:
@@ -78,7 +70,7 @@ jobs:
           tag_name: ${{ github.ref_name }}
           draft: false
           files: |
-            deb-packages/*.deb=my-app_${{ github.ref_name }}_amd64.deb
-            source-code/source.tar.gz=my-app-${{ github.ref_name }}-source.tar.gz
+            deb-packages/*.deb=VisitorApp_${{ github.ref_name }}_amd64.deb
+            source-code/source.tar.gz=VisitorApp-${{ github.ref_name }}-source.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
