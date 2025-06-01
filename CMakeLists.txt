@@ -30,3 +30,6 @@ if(BUILD_TESTS)
   target_link_libraries(check gtest gmock gtest_main visitor_lib)
   add_test(NAME check COMMAND check)
 endif()
+
+include(CPackConfig.cmake)
+include(CPack)
