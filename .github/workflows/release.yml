@@ -82,7 +82,7 @@ jobs:
           tag_name: ${{ github.ref_name }}
           draft: false
           files: |
-            deb-packages/*.deb=VisitorApp_${{ github.ref_name }}.deb
-            source-code/source.tar.gz=VisitorApp-${{ github.ref_name }}-source.tar.gz
+            deb-packages/*.deb=tmp_rk2_${{ github.ref_name }}.deb
+            source-code/source.tar.gz=tmp_rk2-${{ github.ref_name }}-source.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
