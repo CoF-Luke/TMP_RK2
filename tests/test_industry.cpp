@@ -18,6 +18,7 @@ public:
 class MockHouse : public House
 {
 public:
+    MockHouse(int stairs, int lat, int longitude) : House(stairs, lat, longitude) {}
     MOCK_METHOD(int, getStairs, (), ());
 };
 
